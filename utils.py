@@ -1,22 +1,22 @@
 # This code is part of:
 #
-#   CS4501-00:  Computer Vision, Spring 2026
+#   CS4501-003: Computer Vision
 #   University of Virginia
 #   Instructor: Zezhou Cheng
-
+#
+import numpy as np
 import os
-import sys
 import errno
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 
 
 def imread(path):
     img = plt.imread(path).astype(float)
-    
-    #Remove alpha channel if it exists
+
+    # Remove alpha channel if it exists
     if img.ndim > 2 and img.shape[2] == 4:
         img = img[:, :, 0:3]
-    #Puts images values in range [0,1]
+    # Puts images values in range [0,1]
     if img.max() > 1.0:
         img /= 255.0
 
@@ -31,4 +31,4 @@ def mkdir(dirpath):
             if e.errno != errno.EEXIST:
                 raise
     else:
-        sys.stdout.write("Directory {} already exists.\n".format(dirpath))
+        print("Directory {} already exists.".format(dirpath))
